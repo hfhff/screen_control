@@ -1,0 +1,10 @@
+.gradle/
+.gradle-home/
+.gradle-bootstrap/
+.android-home/
+**/build/
+local.properties
+gradle-*-bin.zip
+*.apk
+tools/out/
+.omx/
