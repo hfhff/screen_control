@@ -122,14 +122,11 @@ public class BlockerService extends Service {
         endText.setGravity(Gravity.CENTER);
         endText.setPadding(0, 0, 0, dp(30));
         Button home = button("홈으로 돌아가기");
-        Button unlock = button("현재 일정 동안 해제");
         home.setOnClickListener(v -> { hideOverlay(); startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)); });
-        unlock.setOnClickListener(v -> { new ScheduleStore(this).bypass(packageName, start, end); hideOverlay(); });
         box.addView(title);
         box.addView(prompt);
         box.addView(endText);
         box.addView(home, new LinearLayout.LayoutParams(-1, dp(56)));
-        box.addView(unlock, new LinearLayout.LayoutParams(-1, dp(56)));
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,

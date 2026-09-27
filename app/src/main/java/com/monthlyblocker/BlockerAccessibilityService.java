@@ -54,12 +54,9 @@ public final class BlockerAccessibilityService extends AccessibilityService {
         TextView end = text(Instant.ofEpochMilli(blockedEnd).atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("HH:mm")) + "까지 차단됩니다.", 16, false);
         end.setGravity(Gravity.CENTER);
         Button home = button("홈으로 돌아가기");
-        Button unlock = button("현재 일정 동안 해제");
         home.setOnClickListener(v -> { hide(); startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)); });
-        unlock.setOnClickListener(v -> { new ScheduleStore(this).bypass(blockedPackage, blockedStart, blockedEnd); hide(); });
         box.addView(title); box.addView(prompt); box.addView(end);
         box.addView(home, new LinearLayout.LayoutParams(-1, dp(56)));
-        box.addView(unlock, new LinearLayout.LayoutParams(-1, dp(56)));
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(-1, -1, WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY, WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN, android.graphics.PixelFormat.OPAQUE);
         try { overlay = box; windows.addView(overlay, params); } catch (RuntimeException e) { overlay = null; }
     }
